@@ -35,27 +35,6 @@ Submits a `%{"amount", "currency"}` map that `Money.Ecto.Composite.Type` casts d
 
 For plain locale-aware *number* input (no currency), see the sibling [`localize_inputs`](https://hex.pm/packages/localize_inputs) package — same architecture, no currency layer.
 
-## How the layers fit
-
-```
-   user types in a browser
-            │
-            ▼
-   <.money_input>  ──── AutoNumeric (live formatting, cursor preservation)
-            │
-            ▼  %{"amount" => "1.234,56", "currency" => "EUR"}
-            │
-   Money.Input.Changeset.cast_money/3  or  Money.Ecto.Composite.Type.cast/1
-            │
-            ▼
-       %Money{}   ──── Money arithmetic, Money.cmp, Money.split, Money.to_string
-            │
-            ▼
-   Postgres composite column  /  MySQL json column
-```
-
-Each layer is gated on the deps actually present in your project. Use `ex_money` alone in a CLI tool; add `ex_money_sql` when you persist; add `money_input` when you have a Phoenix form. There's no all-or-nothing.
-
 ## License
 
 All three packages are Apache-2.0.
