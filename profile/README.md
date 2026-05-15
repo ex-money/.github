@@ -1,4 +1,4 @@
-# elixir-money
+# ex-money
 
 A small family of Elixir libraries for working with money — the data type, the database, and the form input — built on top of [CLDR](https://cldr.unicode.org/) via the [`localize`](https://hex.pm/packages/localize) package so that every layer is currency- and locale-aware out of the box.
 
@@ -34,6 +34,14 @@ The `<.money_input>` and `<.currency_picker>` HEEx components, an AutoNumeric-ba
 Submits a `%{"amount", "currency"}` map that `Money.Ecto.Composite.Type` casts directly — no custom param-flattening, no canonical-vs-locale ambiguity on the wire. Use it whenever a user types money into a form.
 
 For plain locale-aware *number* input (no currency), see the sibling [`localize_inputs`](https://hex.pm/packages/localize_inputs) package — same architecture, no currency layer.
+
+## Try it in the browser
+
+[`money_input_playground`](https://github.com/ex-money/money_input_playground) is a small Fly.io-deployable wrapper around the `ex_money_input` visualizer. It runs the real HEEx components across every locale and currency, with AutoNumeric mounted, so you can see what your users would see without setting up a project first.
+
+Live instance: **<https://elixir-money-input.fly.dev>**.
+
+Not a library — it's a deployment shell (Bandit + a host router that adds `favicon`, `robots.txt`, `/healthz`, and forwards to `Money.Input.Visualizer`). The `ex_money_input` library itself is unchanged.
 
 ## License
 
